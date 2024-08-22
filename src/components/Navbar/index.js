@@ -8,7 +8,7 @@ const Navbar = props => {
   const {restaurantName} = props
 
   const onLogout = () => {
-    Cookies.remove('JWT-Token')
+    Cookies.remove('jwt_token')
     const {history} = props
     history.replace('/')
   }
@@ -17,11 +17,11 @@ const Navbar = props => {
     <CartList.Consumer>
       {value => {
         const {cartList} = value
-        let cartCount = 0
-        if (cartList.length !== 0) {
-          const quantityList = cartList.map(eachItem => eachItem.quantity)
-          cartCount = quantityList.reduce((acc, sum) => acc + sum)
-        }
+        // let cartCount = 0
+        // if (cartList.length !== 0) {
+        //   const quantityList = cartList.map(eachItem => eachItem.quantity)
+        //   cartCount = quantityList.reduce((acc, sum) => acc + sum)
+        // }
         return (
           <nav>
             <Link to="/">
@@ -30,7 +30,11 @@ const Navbar = props => {
             <div className="cartDetails">
               <p>My Orders</p>
               <Link to="/cart">
-                <button data-testid="cart" className="cartContainer">
+                <button
+                  type="button"
+                  data-testid="cart"
+                  className="cartContainer"
+                >
                   <AiOutlineShoppingCart className="cartIcon" />
                   <span className="cartCount">{cartList.length}</span>
                 </button>
